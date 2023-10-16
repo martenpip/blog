@@ -1,3 +1,2 @@
-
-php artisan serve
-npm run dev
+`npm run dev` build styles
+`php artisan serve` run webserver

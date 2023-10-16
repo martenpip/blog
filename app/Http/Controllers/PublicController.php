@@ -7,12 +7,10 @@ use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         $articles = Article::paginate(12);
         return view('welcome', compact('articles'));
     }
-
 
     public function about(){
         return view('about');

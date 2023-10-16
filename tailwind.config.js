@@ -41,7 +41,7 @@ export default {
             "night",
             "coffee",
             "winter",
-        ],
+        ]
     },
 }
 
