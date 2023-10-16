@@ -6,6 +6,7 @@
             <div class="card-body">
                 <form action="{{route('articles.update', ['article' => $article->id])}}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="form-control w-full">
                         <label class="label">
                             <span class="label-text">Title</span>
