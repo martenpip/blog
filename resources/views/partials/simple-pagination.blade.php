@@ -2,12 +2,12 @@
     <nav>
         <ul class="pagination">
             {{-- Previous Page Link --}}
-            @if ($paginator->onFirstPage())
-                <li class="join-item btn btn-outline" class="join-item btn btn-outline" aria-disabled="true"><span>@lang('pagination.previous')</span></li>
+            @if ($paginator->hasMorePages())
+                <li><a class="join-item btn btn-outline" href="{{ $paginator->previousPageUrl() }}" rel="prev">@lang('pagination.previous')</a></li>
             @else
-                <li><a href="{{ $paginator->previousPageUrl() }}" rel="prev">@lang('pagination.previous')</a></li>
+                <li class="disabled" aria-disabled="true"><span>@lang('pagination.previous')</span></li>
             @endif
-
+            
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
                 <li><a class="join-item btn btn-outline" href="{{ $paginator->nextPageUrl() }}" rel="next">@lang('pagination.next')</a></li>
@@ -17,3 +17,4 @@
         </ul>
     </nav>
 @endif
+
