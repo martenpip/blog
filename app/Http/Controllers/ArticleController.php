@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -13,13 +15,17 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::latest()->paginate();
+        //$articles = User::find(3)->articles()->latest()->paginate();
+        $articles = auth()->user()->articles()->latest()->paginate();
         return view('articles.index', compact('articles'));
     }
 
+    /**
+     * Display a listing of the deleted resource.
+     */
     public function deleted()
     {
-        $articles = Article::onlyTrashed()->orderby('deleted_at')->paginate();
+        $articles = Article::onlyTrashed()->orderBy('deleted_at')->paginate();
         return view('articles.index', compact('articles'));
     }
 
@@ -36,8 +42,12 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-
         $article = new Article($request->validated());
+        if($request->file('image')) {
+            $file = $request->file('image')->store('/public');
+            $article->image = Storage::url($file);
+        }
+        $article->user()->associate(auth()->user());
         $article->save();
         return redirect()->route('articles.index');
     }
@@ -63,8 +73,8 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-    //    $article->title = $request->validated('title');
-    //    $article->body = $request->validated('title');
+//        $article->title = $request->validated('title');
+//        $article->body = $request->validated('body');
         $article->fill($request->validated());
         $article->save();
         return redirect()->route('articles.index');

@@ -3,20 +3,20 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
+use App\Models\Image;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ArticleSeeder extends Seeder
+class ImageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $articles = Article::factory(100)->make();
-        $articles = $articles->sortBy('created_at');
+        $articles = Article::all();
         foreach ($articles as $article){
-            $article->save();
+            Image::factory(rand(0,5))->create(['article_id' => $article->id]);
         }
     }
 }
