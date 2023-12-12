@@ -59,6 +59,17 @@ class ArticleController extends Controller
                 $img->path = Storage::url($file);
                 $img->article()->associate($article);
                 $img->save();
+                $request->validate([
+                    'title' => 'required|string|max:255',
+                    'body' => 'required|string',
+                    'tags' => 'required|array',
+                    'tags.*' => 'exists:tags,id',
+                    'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    'price' => 'required|numeric|min:0',
+                ]);
+
+                return redirect()->route('articles.index')->with('success', 'Article created successfully');
+
             }
         }
 
@@ -107,6 +118,8 @@ class ArticleController extends Controller
         return redirect()->route('articles.index');
     }
 };
+
+
 
 
 

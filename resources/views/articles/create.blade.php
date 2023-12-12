@@ -18,6 +18,18 @@
                     @enderror
                 </div>
                 <div class="form-control w-full">
+    <label class="label">
+        <span class="label-text">Burger Price</span>
+    </label>
+    <input name="price" type="number" step="0.01" placeholder="Burger Price" class="input input-bordered w-full @error('price') input-error @enderror" />
+    @error('price')
+    <label class="label">
+        <span class="label-text-alt text-error">{{$message}}</span>
+    </label>
+    @enderror
+</div>
+
+                <div class="form-control w-full">
                     <label class="label">
                         <span class="label-text">Describe the burger.</span>
                     </label>

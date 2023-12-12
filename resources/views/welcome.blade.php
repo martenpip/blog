@@ -20,26 +20,28 @@
                 @endif
                 <div class="card-body">
                     <div>
-                        <h2 class="card-title">{{ $article->title }}</h2>
+                        <h1 class="card-title">{{ $article->title }}</h1>
+                        <p>Price: ${{ $article->price }}</p> <!-- Add this line to display the price -->
+
                         <div class="stat-desc flex flex-wrap">
-                            @foreach($article->tags as $tag)
-                                <a href="{{route('public.tag', ['tag' => $tag])}}">
-                                    <div class="badge badge-accent badge-outline mt-1 mr-1">{{$tag->name}}</div>
-                                </a>
-                            @endforeach
-                        </div>
+                        @foreach($article->tags as $tag)
+                        <a href="{{route('public.tag', ['tag' => $tag])}}">
+                            <div class="badge badge-accent badge-outline mt-1 mr-1">{{$tag->name}}</div>
+                        </a>
+                        @endforeach
                     </div>
-                    <p>{{ $article->snippet }}</p>
-                    <div class="card-actions justify-end">
-                        <form action="{{route('like', ['article' => $article])}}" method="POST">
-                            @csrf
-                        </form>
-                        <a href="{{route('public.article', ['article' => $article])}}" class="btn btn-primary">Read More</a>
-                    </div>
+                </div>
+                <p>{{ $article->snippet }}</p>
+                <div class="card-actions justify-end">
+                    <form action="{{route('like', ['article' => $article])}}" method="POST">
+                        @csrf
+                    </form>
+                    <a href="{{route('public.article', ['article' => $article])}}" class="btn btn-primary">Read More</a>
                 </div>
             </div>
         </div>
-        @endforeach
     </div>
+    @endforeach
+</div>
 </div>
 @endsection
