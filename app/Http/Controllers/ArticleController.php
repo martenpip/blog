@@ -68,7 +68,7 @@ class ArticleController extends Controller
                     'price' => 'required|numeric|min:0',
                 ]);
 
-                return redirect()->route('articles.index')->with('success', 'Article created successfully');
+                
 
             }
         }
