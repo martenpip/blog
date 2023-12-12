@@ -33,7 +33,7 @@
 
                     <div class="form-control w-full">
                         <label class="label">
-                            <span class="label-text">Image</span>
+                            <span class="label-text">Nice picture of burger.</span>
                         </label>
                         <input type="file" name="image" class="input" accept="image/*">
                         @error('image')

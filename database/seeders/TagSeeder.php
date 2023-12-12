@@ -9,19 +9,31 @@ use Illuminate\Database\Seeder;
 
 class TagSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $tags = Tag::factory(20)->create();
-        $articles = Article::all();
-        foreach ($articles as $article){
-            $randCount = rand(0, 5);
-            $randTags = $tags->random($randCount);
-            foreach ($randTags as $tag){
-                $article->tags()->attach($tag);
-            }
-        }
+        Tag::factory(1)->create([
+            'name' => "Vegan",
+        ]);
+        Tag::factory(1)->create([
+            'name' => "Vegetarian",
+        ]);
+        Tag::factory(1)->create([
+            'name' => "Gluten-free",
+        ]);
+        Tag::factory(1)->create([
+            'name' => "Vürtsikus 🌶️",
+        ]);
+        Tag::factory(1)->create([
+            'name' => "Vürtsikus 🌶️🌶️",
+        ]);
+        Tag::factory(1)->create([
+            'name' => "Vürtsikus 🌶️🌶️🌶️",
+        ]);
+        Tag::factory(1)->create([
+            'name' => "Vürtsikus 🌶️🌶️🌶️🌶️",
+        ]);
+        Tag::factory(1)->create([
+            'name' => "Vürtsikus 🌶️🌶️🌶️🌶️🌶️",
+        ]);
     }
 }

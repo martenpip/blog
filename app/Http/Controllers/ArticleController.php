@@ -31,6 +31,8 @@ class ArticleController extends Controller
         return view('articles.index', compact('articles'));
     }
 
+    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -44,6 +46,7 @@ class ArticleController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreArticleRequest $request)
+    
     {
         $article = new Article($request->validated());
         $article->user()->associate(auth()->user());
@@ -103,4 +106,8 @@ class ArticleController extends Controller
         $article->delete();
         return redirect()->route('articles.index');
     }
-}
+};
+
+
+
+
